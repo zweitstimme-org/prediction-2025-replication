@@ -120,7 +120,11 @@ ggplot(federal_polls, aes(x = electiondate, y = rmse)) +
 
 # Save plot
 dir.create("plots", showWarnings = FALSE)
-ggsave("output/plots/federal-rmse.pdf")
+ggsave("output/plots/federal-rmse.pdf",
+       dpi = 300,
+       height = 3,
+       width = 3 * 1.5,
+       bg = "white")
 
 ggsave(
   "output/plots/federal-rmse.tiff",
@@ -189,7 +193,11 @@ ggplot(state_polls, aes(x = electiondate, y = rmse)) +
   theme_minimal()
 
 # Save plot
-ggsave("output/plots/state-rmse.pdf")
+ggsave("output/plots/state-rmse.pdf",
+       dpi = 300,
+       height = 3,
+       width = 3 * 1.5,
+       bg = "white")
 
 ggsave(
   "output/plots/state-rmse.tiff",

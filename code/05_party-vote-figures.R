@@ -115,8 +115,8 @@ if (!dir.exists("output/plots")) {
 ggsave(
   filename = "output/plots/figure_forecast_party_vote.pdf",
   plot = ggplot_forecast,
-  height = 6,
-  width = 6 * 1.5
+  height = 4,
+  width = 4 * 1.5
 )
 
 # Save as PNG
@@ -125,8 +125,8 @@ ggsave(
   plot = ggplot_forecast,
   device = "png",
   dpi = 300,
-  height = 5,
-  width = 5 * 1.5,
+  height = 4,
+  width = 4 * 1.5,
   bg = "white"
 )
 
