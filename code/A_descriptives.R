@@ -122,6 +122,14 @@ ggplot(federal_polls, aes(x = electiondate, y = rmse)) +
 dir.create("plots", showWarnings = FALSE)
 ggsave("output/plots/federal-rmse.pdf")
 
+ggsave(
+  "output/plots/federal-rmse.tiff",
+  dpi = 300,
+  height = 3,
+  width = 3 * 1.5,
+  bg = "white"
+)
+
 ### 6. Process State Poll Accuracy -----------------------
 
 # Load state data
@@ -182,3 +190,11 @@ ggplot(state_polls, aes(x = electiondate, y = rmse)) +
 
 # Save plot
 ggsave("output/plots/state-rmse.pdf")
+
+ggsave(
+  "output/plots/state-rmse.tiff",
+  dpi = 300,
+  height = 3,
+  width = 3 * 1.5,
+  bg = "white"
+)
