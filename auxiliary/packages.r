@@ -26,7 +26,9 @@ p_needed <- c(
   "xtable", "knitr", "stargazer",
   
   # String processing
-  "stringi"
+  "stringi",
+  
+  "qs"
 )
 
 # Install missing packages

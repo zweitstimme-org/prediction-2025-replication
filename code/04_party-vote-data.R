@@ -20,10 +20,6 @@ forecast <- readRDS(forecast_files)
 ordered_party <- names(sort(-apply(forecast, 2, median)))
 forecast <- forecast[, ordered_party]
 
-# Save newest draws to api folder
-saveRDS(as.data.frame(forecast), file = "api/forecast_party_vote_draws.rds")
-
-
 # Define party names and mappings
 party_names <- data.frame(
   full_name = c("CDU/CSU", "SPD", "Grüne", "FDP", "AfD", "Linke", "BSW", "Andere"),

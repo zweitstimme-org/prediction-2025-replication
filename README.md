@@ -4,9 +4,17 @@ output: html_document
 date: "2025-01-30"
 ---
 
-# Replication Materials: [The Zweitstimme Forecast for the German Federal Election 2025]
+# Replication Materials: The Zweitstimme Forecast for the German Federal Election 2025: Coalition Majorities and Vacant Districts
 
-This repository contains replication materials for "[The Zweitstimme Forecast for the German Federal Election 2025]".
+## Authors
+Cornelius Erfort, University Witten/Herdecke, Germany
+Lukas F. Stoetzer, University Witten/Herdecke, Germany
+Thomas Gschwend, University of Mannheim, Germany
+Elias Koch, Hertie School, Berlin, Germany
+Simon Munzert, Hertie School, Berlin, Germany
+Hannah Rajski, University of Mannheim, Germany
+
+This repository contains replication materials for "The Zweitstimme Forecast for the German Federal Election 2025: Coalition Majorities and Vacant Districts".
 
 ## Repository Structure
 
@@ -14,8 +22,7 @@ This repository contains replication materials for "[The Zweitstimme Forecast fo
 
 #### Raw Data
 - `./data/btw_2021_kerg2.csv`: 2021 German federal election data
-- `./data/btw_candidates_1983-2025.csv`: Historical candidate data from 1983-2025 (csv format)
-- `./data/btw_candidates_1983-2025.RData`: Historical candidate data from 1983-2025 (R format)
+- `./data/btw_candidates_1983-2025.csv`: Historical candidate data from 1983-2025
 - `./data/btw25_geometrie_wahlkreise_shp/*`: Shapefile containing electoral district geometries
 - `./data/pre_train_data_21.rds`: Pre-training model data including elections until 2021
 - `./data/germany-federal-polls.csv`: Federal polling data
@@ -26,8 +33,15 @@ This repository contains replication materials for "[The Zweitstimme Forecast fo
 - `./output/forecast_draws_2025-01-30.rds`: Model forecast draws (2025-01-30)
 - `./output/forecast_party_vote.rds`: Party vote forecasts  (2025-01-30)
 - `./output/district_reg_predictions.rds`: District-level predictions  (2025-01-30)
-- `./output/prediction_data_districts.rds`: Prediction data for districts from regession (predicted party vote for each district)
+- `./output/prediction_data_districts.rds`: Prediction data for districts from regession (predicted vote shares for each district)
 - `./output/pred_probabilities.rds`: Probability calculations for scenarios (e.g. coalition majorities)
+- `./output/pre_train_data_25.rds`: Prepared dataset for structural model (from 01_prepare-data.R)
+- `./output/2025_structural_inits_simple.rds`: Initial values and priors from structural model (from 02_ger_structural_pre_train_stan.R)
+- `./output/res_compressed.rds`: Raw MCMC draws from the combined forecasting model (compressed)
+- `./output/vacant_seats.rds`: Vacant seats data (from 07_vacant-seats.R)
+- `./output/pre_train_data_21.xlsx`: Pre-training data for structural model (hand-coded)
+- `./output/wahlrecht_polls_2025-01-30.RData`: Wahlrecht polling data (2025-01-30)
+
 ### Code Files
 
 The analysis can be reproduced by running the scripts in the following order:
@@ -37,7 +51,7 @@ The analysis can be reproduced by running the scripts in the following order:
 
 `./code/00_run-model.R`: Main script to execute the full analysis
 
-1. `./code/01_prepare-data.R`: Data preparation and cleaning for pre-training model
+1. `./code/01_prepare-data.R`: Data preparation and cleaning for the structural model
 2. `./code/02_ger_structural_pre_train_stan.R`: Structural model for party vote
 3. `./code/03_ger_combined_model_stan.R`: Combined forecasting model for party vote
 4. `./code/04_party-vote-data.R`: Processing second vote forecast data

@@ -3,6 +3,8 @@ title: "Codebook"
 output: html_document
 date: "2025-01-30"
 ---
+# Codebook: The Zweitstimme Forecast for the German Federal Election 2025: Coalition Majorities and Vacant Districts
+
 
 ## Input Data Files:
 
@@ -42,7 +44,6 @@ Dataset for structural model until 2021:
 - polls_200_230: Average poll share 200-230 days before election
 - chancellor_party: Whether party held chancellorship (0/1)
 
-
 ### germany-federal-polls.csv
 Federal polling data:
 - electiondate: Election date
@@ -55,7 +56,6 @@ Federal polling data:
 - electiondate_l1: Previous election date
 - electiondate_lead1: Election date lead
 
-
 ### germany-state-elections.csv
 State election results:
 - electiondate: Election date
@@ -65,7 +65,6 @@ State election results:
 - vote_share: Vote share
 - on_ballot: Whether party was on ballot (0/1)
 - vote_share_l1: Previous election vote share
-
 
 ### germany-state-polls.csv
 
@@ -86,6 +85,14 @@ Dataset for structural model until 2025:
 - voteshare_l1: Previous election vote share
 - polls_200_230: Average poll share 200-230 days before election
 - chancellor_party: Whether party held chancellorship (0/1)
+
+### 2025_structural_inits_simple.rds
+Initial values and priors from structural model:
+- b: Matrix of coefficient means for predictors (3 columns):
+  - Column 1: Previous vote share coefficients
+  - Column 2: Chancellor party coefficients
+  - Column 3: Poll average coefficients
+- b0: Vector of intercept means
 
 ### forecast_draws_{date}.rds
 Matrix of simulated vote shares with:
@@ -115,3 +122,36 @@ Dataset with probabilities for various scenarios:
 - maj_{coalition}: Probability of coalition majority
 - prob_{party}_largest: Probability of party becoming largest
 - grundmandat_{party}: Probability of party winning 3+ direct mandates
+
+### district_reg_predictions.rds
+Matrix of simulated district-level predictions:
+- Rows: District-party combinations (one row per party per district)
+- Columns: Simulation iterations (default: 10000)
+- Values: Predicted vote shares (0-1 scale)
+- Used to calculate confidence intervals and winner probabilities for district-level forecasts
+
+### forecast_party_vote.rds
+Summary of party vote forecasts:
+- Contains aggregated forecast results for each party
+- Includes mean predictions and uncertainty intervals
+- Used for generating main forecast visualizations
+
+### res_compressed.rds
+Compressed MCMC draws from the combined forecasting model:
+- Contains raw simulation results
+- Used for posterior analysis and uncertainty quantification
+- Compressed format for efficient storage
+
+### vacant_seats.rds
+Analysis of potential vacant seats:
+- District-level predictions for seat allocation
+- Probability calculations for vacant seats
+
+### pre_train_data_21.xlsx
+Hand-coded data for 2021 and 2025 elections:
+- election: Election year
+- party: Party abbreviation
+- voteshare: Actual vote share
+- voteshare_l1: Previous election vote share
+- polls_200_230: Average poll share 200-230 days before election
+- chancellor_party: Whether party held chancellorship (0/1)

@@ -122,14 +122,17 @@ results <- stan(
   control = list(adapt_delta = 0.99, max_treedepth = 15)
 )
 
-# Save results
-saveRDS(results, file = paste0("/mnt/forecasts/prediction-2025/draws/res_brw_", upcoming_election, "_", as.Date(cutoff+1), ".rds"))
+
 
 
 ### 6. Process and Save Forecasts --------------------------
 
 # Extract results
 res <- as.matrix(results)
+
+# Save draws
+saveRDS(res, file = "output/res_compressed.rds", compress = "xz")
+
 
 # Process forecast results
 draws_forecast_levels <- list()
@@ -151,7 +154,7 @@ draws_forecast_levels[["polls"]] <- polls
 # Save forecast draws
 forecast <- draws_forecast_levels[["forecast"]]
 colnames(forecast) <- draws_forecast_levels[["party_names"]]
-saveRDS(forecast, str_c("/mnt/forecasts/prediction-2025/forecast/forecast_draws_", as.Date(cutoff+1),".rds"))
+saveRDS(forecast, str_c("output/forecast_draws_", as.Date(cutoff+1),".rds"))
 
 
 # Display results
