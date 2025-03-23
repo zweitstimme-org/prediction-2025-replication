@@ -124,3 +124,20 @@ pred_probabilities <- data.frame(
 ### 8. Save Results ------------------------------------
 
 saveRDS(pred_probabilities, "output/pred_probabilities.rds")
+
+
+# Create a data frame with coalition names and rounded probabilities
+coalition_probs <- data.frame(
+  Coalition = c("CDU/CSU + Greens", "CDU/CSU + SPD", "CDU/CSU + AfD", "CDU/CSU + Greens + SPD"),
+  Probability = round(100 * c(
+    pred_probabilities$maj_cdu_csu_gru, 
+    pred_probabilities$maj_cdu_csu_spd, 
+    pred_probabilities$maj_cdu_csu_afd, 
+    pred_probabilities$maj_cdu_csu_gru_spd
+  ), 0)  %>% str_c("%") # Convert to percentages and round
+)
+
+# Use stargazer to create a LaTeX table
+stargazer(coalition_probs, summary = FALSE, rownames = FALSE, 
+          title = "Coalition Majority Probabilities", 
+          align = TRUE, digits = 0, out = "output/tables/coalition_majority_probabilities.tex")
